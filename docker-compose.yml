@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: abd
+      POSTGRES_USER: riss
+      POSTGRES_PASSWORD: riss
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      - ./docker/init:/docker-entrypoint-initdb.d:ro
+      - ./исходные данные:/data:ro
+
+volumes:
+  postgres_data:
+
